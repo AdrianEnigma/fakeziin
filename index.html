@@ -1529,42 +1529,6 @@
       display: none;
     }
 
-    .vsl-video {
-      display: block;
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      max-height: 640px;
-      object-fit: cover;
-      object-position: center center;
-      background: #fff7ec;
-      border-radius: 18px;
-    }
-
-    .video-custom-controls {
-      display: flex;
-      justify-content: center;
-      padding: 12px 10px 6px;
-    }
-
-    .video-btn {
-      min-height: 52px;
-      min-width: min(100%, 320px);
-      padding: 0 22px;
-      border: 0;
-      border-radius: 999px;
-      color: #fff;
-      background: var(--coral);
-      box-shadow: 0 12px 26px rgba(255, 107, 107, .28);
-      font: inherit;
-      font-size: 15px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .video-btn:active {
-      transform: translateY(1px);
-    }
-
     @media (max-width: 640px) {
       body {
         padding-bottom: 96px;
@@ -1695,40 +1659,19 @@
       display: none;
     }
 
-    .vsl-video {
+    wistia-player[media-id='bjog6ctg6o'] {
       display: block;
       width: 100%;
-      aspect-ratio: 9 / 16;
-      max-height: 640px;
-      object-fit: cover;
-      object-position: center center;
       background: #fff7ec;
       border-radius: 18px;
+      overflow: hidden;
     }
 
-    .video-custom-controls {
-      display: flex;
-      justify-content: center;
-      padding: 12px 10px 6px;
-    }
-
-    .video-btn {
-      min-height: 52px;
-      min-width: min(100%, 320px);
-      padding: 0 22px;
-      border: 0;
-      border-radius: 999px;
-      color: #fff;
-      background: var(--coral);
-      box-shadow: 0 12px 26px rgba(255, 107, 107, .28);
-      font: inherit;
-      font-size: 15px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .video-btn:active {
-      transform: translateY(1px);
+    wistia-player[media-id='bjog6ctg6o']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/bjog6ctg6o/swatch');
+      display: block;
+      filter: blur(5px);
+      padding-top: 177.78%;
     }
 
     @media (max-width: 640px) {
@@ -1736,19 +1679,9 @@
         padding: 7px;
       }
 
-      .vsl-video {
+      wistia-player[media-id='bjog6ctg6o'] {
         max-height: 520px;
         border-radius: 16px;
-      }
-
-      .video-custom-controls {
-        padding: 10px 8px 2px;
-      }
-
-      .video-btn {
-        width: 100%;
-        min-height: 54px;
-        font-size: 15px;
       }
     }
   </style>
@@ -1778,13 +1711,10 @@
         </div>
 
         <div class="product-card video-card" aria-label="Vídeo de apresentação do kit de casinhas de boneca">
-          <video class="vsl-video" id="vsl-video" poster="assets/hero-poster.jpg" preload="metadata" playsinline disablepictureinpicture>
-            <source src="assets/vsl.mp4" type="video/mp4">
-            Seu navegador não conseguiu carregar o vídeo.
-          </video>
-          <div class="video-custom-controls" aria-label="Controles do vídeo">
-            <button class="video-btn" id="video-toggle" type="button" aria-label="Reproduzir ou pausar vídeo">Reproduzir vídeo</button>
-          </div>
+          <script src="https://fast.wistia.com/player.js" async></script>
+          <script src="https://fast.wistia.com/embed/bjog6ctg6o.js" async type="module"></script>
+          <style>wistia-player[media-id='bjog6ctg6o']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/bjog6ctg6o/swatch'); display: block; filter: blur(5px); padding-top:177.78%; }</style>
+          <wistia-player media-id="bjog6ctg6o" aspect="0.5625"></wistia-player>
           <div class="floating-offer">Hoje por <span>R$19,90</span></div>
         </div>
       </div>
@@ -2127,38 +2057,6 @@
 
     if (purchaseToast && buyerName && buyerPlan) {
       setTimeout(showPurchaseToast, randomBetween(8000, 10000));
-    }
-
-    const vslVideo = document.getElementById("vsl-video");
-    const videoToggle = document.getElementById("video-toggle");
-
-    function updateVideoButtons() {
-      if (!vslVideo || !videoToggle) return;
-      videoToggle.textContent = vslVideo.paused ? "Reproduzir vídeo" : "Pausar vídeo";
-    }
-
-    if (vslVideo && videoToggle) {
-      videoToggle.addEventListener("click", async () => {
-        if (vslVideo.paused) {
-          try {
-            await vslVideo.play();
-          } catch (error) {
-            videoToggle.textContent = "Toque no vídeo para reproduzir";
-          }
-        } else {
-          vslVideo.pause();
-        }
-        updateVideoButtons();
-      });
-
-      vslVideo.addEventListener("click", () => {
-        videoToggle.click();
-      });
-
-      vslVideo.addEventListener("play", updateVideoButtons);
-      vslVideo.addEventListener("pause", updateVideoButtons);
-      vslVideo.addEventListener("ended", updateVideoButtons);
-      updateVideoButtons();
     }
 
     const canAnimate = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
