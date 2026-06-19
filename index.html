@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Kit Casinhas de Boneca em Papel</title>
   <meta name="description" content="Kit imprimível de casinhas de boneca realistas para tirar sua filha do celular com uma brincadeira criativa, barata e pronta na hora.">
+  <link rel="icon" type="image/png" href="assets/favicon-casinha.png">
   <style>
     :root {
       --black: #050506;
@@ -1715,7 +1716,7 @@
           <script src="https://fast.wistia.com/embed/bjog6ctg6o.js" async type="module"></script>
           <style>wistia-player[media-id='bjog6ctg6o']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/bjog6ctg6o/swatch'); display: block; filter: blur(5px); padding-top:177.78%; }</style>
           <wistia-player media-id="bjog6ctg6o" aspect="0.5625"></wistia-player>
-          <div class="floating-offer">Hoje por <span>R$19,90</span></div>
+          <div class="floating-offer">Hoje por <span>R$10</span></div>
         </div>
       </div>
     </section>
@@ -1866,7 +1867,7 @@
               <li class="no"><span class="x">×</span> Guia de montagem</li>
               <li class="no"><span class="x">×</span> Atualizações semanais</li>
             </ul>
-            <a class="btn outline" href="#final">Quero começar simples</a>
+            <a class="btn outline" href="#final" data-link-key="checkoutBasic">Quero começar simples</a>
           </article>
 
           <article class="plan-card premium">
@@ -1888,8 +1889,8 @@
               <li><span class="check">✓</span> Atualizações semanais</li>
               <li><span class="check">✓</span> Garantia de 7 dias</li>
             </ul>
-            <a class="btn primary" href="#final">Quero minhas casinhas agora <span>→</span></a>
-            <p class="microcopy" style="margin-top: 12px;">Oferta de hoje: Premium por R$19,90</p>
+            <a class="btn primary" href="#final" data-link-key="checkoutPremium">Quero começar Premium <span>→</span></a>
+            <p class="microcopy" style="margin-top: 12px;">Oferta especial do Premium</p>
           </article>
         </div>
       </div>
@@ -1999,6 +2000,17 @@
     </div>
     <a class="btn primary" href="#planos">Quero minhas casinhas agora</a>
   </div>
+
+  <script src="button-links.js"></script>
+  <script>
+    const buttonLinks = window.BUTTON_LINKS || {};
+    document.querySelectorAll("[data-link-key]").forEach((element) => {
+      const key = element.getAttribute("data-link-key");
+      if (buttonLinks[key]) {
+        element.setAttribute("href", buttonLinks[key]);
+      }
+    });
+  </script>
 
   <script>
     const buyers = [
